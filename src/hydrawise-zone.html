@@ -1,0 +1,40 @@
+<!--
+ The MIT License
+
+ Copyright (c) 2021 Ronald Brinkerink
+ All rights reserved.
+ node-red-contrib-hydrawise
+-->
+
+<script type="text/javascript">
+  RED.nodes.registerType('hydrawise-zone', {
+    category: 'config',
+    defaults: {
+      name: {value: ""},
+      zoneAddress: {value: 0}
+    },
+    label: function () {
+      return this.name || "hydrawise zone";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="hydrawise-zone">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="icon-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
+        <input type="text" id="node-config-input-name" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-zoneAddress"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.zoneAddress"></span></label>
+        <input type="text" id="node-config-input-zoneAddress" placeholder="0">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="hydrawise-zone">
+    <h2>hydrawise zone node</h2>
+
+    <h3>BETA</h3>
+    <a href="https://fh1ch.github.io/node-bacstack/" target="_blank">API Docs</a>
+
+    The zone to address via hydrawise.
+</script>

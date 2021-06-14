@@ -1,0 +1,12 @@
+*.iml
+.idea
+node_modules/
+hydrawise/
+error*.txt
+.DS_Store
+maps/
+docs/gen/
+code/
+*.log
+
+coverage/

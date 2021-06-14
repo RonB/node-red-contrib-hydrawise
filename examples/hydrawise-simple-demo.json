@@ -1,0 +1,438 @@
+[
+  {
+    "id": "300fd127.935c9e",
+    "type": "tab",
+    "label": "hydrawise Tests",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "1474e606.834fea",
+    "type": "hydrawise-zone",
+    "z": "300fd127.935c9e",
+    "name": "Who is?",
+    "commandType": "whoIs",
+    "timeDuration": 0,
+    "enableDisable": 0,
+    "controllerState": 0,
+    "isUtc": true,
+    "lowLimit": "1",
+    "highLimit": "254",
+    "controller": "b289851b.dec6f8",
+    "server": "977c5141.b0d14",
+    "x": 560,
+    "y": 60,
+    "wires": [
+      [
+        "200bcd1a.e47c92"
+      ]
+    ]
+  },
+  {
+    "id": "200bcd1a.e47c92",
+    "type": "debug",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "x": 950,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "b302933.0273a7",
+    "type": "inject",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 60,
+    "wires": [
+      [
+        "1474e606.834fea"
+      ]
+    ]
+  },
+  {
+    "id": "4e2a4428.2a8d9c",
+    "type": "hydrawise-read",
+    "z": "300fd127.935c9e",
+    "name": "Multiple Read",
+    "objectType": "0",
+    "zone": "cf0dca49.2a9ac",
+    "propertyId": "85",
+    "controller": "b289851b.dec6f8",
+    "server": "977c5141.b0d14",
+    "multipleRead": true,
+    "x": 580,
+    "y": 300,
+    "wires": [
+      [
+        "200bcd1a.e47c92"
+      ]
+    ]
+  },
+  {
+    "id": "2e0dd7f5.12157",
+    "type": "inject",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 300,
+    "wires": [
+      [
+        "4e2a4428.2a8d9c"
+      ]
+    ]
+  },
+  {
+    "id": "86a69fc0.d172a8",
+    "type": "hydrawise-write",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "objectType": "1",
+    "zone": "cf0dca49.2a9ac",
+    "valueTag": "1",
+    "valueValue": "",
+    "propertyId": "28",
+    "controller": "b289851b.dec6f8",
+    "server": "977c5141.b0d14",
+    "multipleWrite": true,
+    "x": 600,
+    "y": 440,
+    "wires": [
+      [
+        "200bcd1a.e47c92"
+      ]
+    ]
+  },
+  {
+    "id": "53594965.4933c8",
+    "type": "inject",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 440,
+    "wires": [
+      [
+        "70ffebee.2bde24"
+      ]
+    ]
+  },
+  {
+    "id": "2f3b2773.acef9",
+    "type": "hydrawise-zone",
+    "z": "300fd127.935c9e",
+    "name": "Time sync",
+    "commandType": "timeSync",
+    "timeDuration": 0,
+    "enableDisable": 0,
+    "controllerState": 0,
+    "isUtc": false,
+    "lowLimit": "1",
+    "highLimit": "254",
+    "controller": "b289851b.dec6f8",
+    "server": "977c5141.b0d14",
+    "x": 570,
+    "y": 120,
+    "wires": [
+      [
+        "200bcd1a.e47c92"
+      ]
+    ]
+  },
+  {
+    "id": "8b2f4c26.5b25b",
+    "type": "inject",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 120,
+    "wires": [
+      [
+        "2f3b2773.acef9"
+      ]
+    ]
+  },
+  {
+    "id": "9188383b.0b6d98",
+    "type": "hydrawise-zone",
+    "z": "300fd127.935c9e",
+    "name": "controller warm start",
+    "commandType": "reinitializecontroller",
+    "timeDuration": 0,
+    "enableDisable": 0,
+    "controllerState": "1",
+    "isUtc": true,
+    "lowLimit": "1",
+    "highLimit": "254",
+    "controller": "b289851b.dec6f8",
+    "server": "977c5141.b0d14",
+    "x": 590,
+    "y": 180,
+    "wires": [
+      [
+        "200bcd1a.e47c92"
+      ]
+    ]
+  },
+  {
+    "id": "1727085a.2ad738",
+    "type": "inject",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 180,
+    "wires": [
+      [
+        "9188383b.0b6d98"
+      ]
+    ]
+  },
+  {
+    "id": "a9b32191.c9f9b8",
+    "type": "inject",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 360,
+    "wires": [
+      [
+        "9606ff81.93a5"
+      ]
+    ]
+  },
+  {
+    "id": "a5b92606.bafb38",
+    "type": "hydrawise-write",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "objectType": "40",
+    "zone": "be63e3d0.b280c",
+    "valueTag": "7",
+    "valueValue": "Comfort Plus",
+    "propertyId": "85",
+    "priority": "8",
+    "controller": "b289851b.dec6f8",
+    "server": "977c5141.b0d14",
+    "multipleWrite": false,
+    "x": 600,
+    "y": 500,
+    "wires": [
+      [
+        "200bcd1a.e47c92"
+      ]
+    ]
+  },
+  {
+    "id": "35d9327f.6ce47e",
+    "type": "inject",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 500,
+    "wires": [
+      [
+        "a5b92606.bafb38"
+      ]
+    ]
+  },
+  {
+    "id": "9606ff81.93a5",
+    "type": "hydrawise-read",
+    "z": "300fd127.935c9e",
+    "name": "Simple Read",
+    "objectType": "40",
+    "zone": "be63e3d0.b280c",
+    "propertyId": "85",
+    "controller": "b289851b.dec6f8",
+    "server": "977c5141.b0d14",
+    "multipleRead": false,
+    "x": 570,
+    "y": 360,
+    "wires": [
+      [
+        "200bcd1a.e47c92"
+      ]
+    ]
+  },
+  {
+    "id": "9eae08cc.131018",
+    "type": "hydrawise-zone",
+    "z": "300fd127.935c9e",
+    "name": "DCC disable 10 sec.",
+    "commandType": "controllerCommunicationControl",
+    "timeDuration": "10",
+    "enableDisable": "1",
+    "controllerState": "255",
+    "isUtc": true,
+    "lowLimit": "1",
+    "highLimit": "254",
+    "controller": "b289851b.dec6f8",
+    "server": "977c5141.b0d14",
+    "x": 600,
+    "y": 240,
+    "wires": [
+      [
+        "200bcd1a.e47c92"
+      ]
+    ]
+  },
+  {
+    "id": "c94f841c.dd7fb",
+    "type": "inject",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 240,
+    "wires": [
+      [
+        "9eae08cc.131018"
+      ]
+    ]
+  },
+  {
+    "id": "70ffebee.2bde24",
+    "type": "function",
+    "z": "300fd127.935c9e",
+    "name": "hydrawise write msg",
+    "func": "msg.payload = {\n    // controllerIPAddress: '127.0.0.1'\n    values: [\n        {\n            // objectId: {type: 8, zone: 44301}, \n            values: [\n                {property: {id: 28, index: 12}, value: [{type: 1, value: true}], priority: 8}\n            ]\n        }\n    ]\n}\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 390,
+    "y": 440,
+    "wires": [
+      [
+        "86a69fc0.d172a8"
+      ]
+    ]
+  },
+  {
+    "id": "4002625d.6c648c",
+    "type": "hydrawise-write",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "objectType": "40",
+    "zone": "be63e3d0.b280c",
+    "valueTag": "7",
+    "valueValue": "Comfort",
+    "propertyId": "85",
+    "priority": "8",
+    "controller": "b289851b.dec6f8",
+    "server": "977c5141.b0d14",
+    "multipleWrite": false,
+    "x": 600,
+    "y": 580,
+    "wires": [
+      [
+        "200bcd1a.e47c92"
+      ]
+    ]
+  },
+  {
+    "id": "c845655.0cd0198",
+    "type": "inject",
+    "z": "300fd127.935c9e",
+    "name": "",
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 580,
+    "wires": [
+      [
+        "4002625d.6c648c"
+      ]
+    ]
+  },
+  {
+    "id": "b289851b.dec6f8",
+    "type": "hydrawise-controller",
+    "name": "Windows VM",
+    "host": "192.168.8.162"
+  },
+  {
+    "id": "977c5141.b0d14",
+    "type": "hydrawise-Client",
+    "z": "300fd127.935c9e",
+    "name": "Local hydrawise",
+    "adpuTimeout": "3000",
+    "port": "47808",
+    "interface": "192.168.8.133",
+    "broadcastAddress": "192.168.8.255"
+  },
+  {
+    "id": "cf0dca49.2a9ac",
+    "type": "hydrawise-zone",
+    "name": "Room Simulator YABE",
+    "zoneAddress": "0"
+  },
+  {
+    "id": "be63e3d0.b280c",
+    "type": "hydrawise-zone",
+    "name": "Text 1",
+    "zoneAddress": "1"
+  }
+]

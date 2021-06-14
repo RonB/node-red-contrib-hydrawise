@@ -1,0 +1,49 @@
+<!--
+ The MIT License
+
+ Copyright (c) 2021 Ronald Brinkerink
+ All rights reserved.
+ node-red-contrib-hydrawise
+-->
+
+<script type="text/javascript">
+  RED.nodes.registerType('hydrawise-controller', {
+    category: 'config',
+    defaults: {
+      name: {value: ""},
+      type: {value: 'CLOUD'},
+      key: {value:''},
+      host: {value: ''}
+    },
+    label: function () {
+      return this.name || "hydrawise controller";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="hydrawise-controller">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="icon-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
+        <input type="text" id="node-config-input-name" placeholder="">
+    </div>
+    <div class="form-row">
+      <label for="node-config-input-type"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.type"></span></label>
+      <input type="text" id="node-config-input-type" placeholder="CLOUD">
+    </div>
+    <div class="form-row">
+      <label for="node-config-input-key"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.key"></span></label>
+      <input type="text" id="node-config-input-key" placeholder="XXXX-XXXX-XXXX-XXXX">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-host"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.host"></span></label>
+        <input type="text" id="node-config-input-host" placeholder="127.0.0.1">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="hydrawise-controller">
+    <h2>hydrawise controller node</h2>
+
+    <h3>BETA</h3>
+
+    The hydrawise controller.
+</script>
