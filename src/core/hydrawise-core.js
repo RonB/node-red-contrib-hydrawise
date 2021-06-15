@@ -7,7 +7,7 @@
  */
 'use strict'
 
-var de = de || { RonB: { hydrawise: { core: {} } } } // eslint-disable-line no-use-before-define
+const de = de || { RonB: { hydrawise: { core: {} } } } // eslint-disable-line no-use-before-define
 de.RonB.hydrawise.core.internalDebugLog = de.RonB.hydrawise.core.internalDebugLog || require('debug')('hydrawise:nodered:core') // eslint-disable-line no-use-before-define
 de.RonB.hydrawise.core.detailDebugLog = de.RonB.hydrawise.core.detailDebugLog || require('debug')('hydrawise:nodered:core:details') // eslint-disable-line no-use-before-define
 de.RonB.hydrawise.core.specialDebugLog = de.RonB.hydrawise.core.specialDebugLog || require('debug')('hydrawise:nodered:core:special') // eslint-disable-line no-use-before-define

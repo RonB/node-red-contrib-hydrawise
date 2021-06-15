@@ -8,7 +8,6 @@
 'use strict'
 
 module.exports = function (RED) {
-  
   function hydrawisezone (config) {
     RED.nodes.createNode(this, config)
     this.name = config.name

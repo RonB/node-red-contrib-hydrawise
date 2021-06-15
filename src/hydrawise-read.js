@@ -8,34 +8,35 @@
 'use strict'
 
 module.exports = function (RED) {
-  const hydrawiseCore = require('./core/hydrawise-core')
-
+  // const hydrawiseCore = require('./core/hydrawise-core')
+  const Hydrawise = require('hydrawise-api').Hydrawise
   function hydrawiseRead (config) {
     RED.nodes.createNode(this, config)
 
     this.name = config.name
-    this.objectType = parseInt(config.objectType)
-    this.propertyId = parseInt(config.propertyId)
-    this.multipleRead = config.multipleRead
-
-    this.zone = RED.nodes.getNode(config.zone)
-    this.objectzone = parseInt(this.zone.zoneAddress) || 0
-
     this.controller = RED.nodes.getNode(config.controller)
-    this.controllerIPAddress = this.controller.host || '127.0.0.1'
+    this.zone = RED.nodes.getNode(config.zone)
 
-    this.connector = RED.nodes.getNode(config.server)
+    const myHydrawise = new Hydrawise({ type: this.controller.type, key: this.controller.key })
 
     const node = this
 
     node.status({ fill: 'green', shape: 'dot', text: 'active' })
-
     node.on('input', function (msg) {
+      myHydrawise.getZones()
+        .then(zones => {
+          msg.payload = zones
+          node.send(msg)
+        })
+        .catch(error => {
+          msg.payload = error
+          node.send(msg)
+        })
+
       if (!node.connector) {
         node.error(new Error('Client Not Ready To Read'), msg)
-        return
       }
-
+      /*
       const options = msg.payload.options || {}
 
       if (node.multipleRead) {
@@ -79,8 +80,7 @@ module.exports = function (RED) {
         hydrawiseCore.internalDebugLog('Read')
 
         const objectId = {
-          type: parseInt(node.objectType),
-          zone: parseInt(node.objectzone)
+          zone: parseInt(node.zone)
         }
 
         try {
@@ -111,6 +111,7 @@ module.exports = function (RED) {
             }
           })
       }
+      */
     })
   }
 

@@ -53,7 +53,7 @@ function releaseWebContent () {
       collapseWhitespace: true,
       collapseInlineTagWhitespace: true,
       conservativeCollapse: true,
-      processScripts: ['text/x-red'],
+      processScripts: ['text/html'],
       quoteCharacter: "'"
     }))
     .pipe(dest('hydrawise'))

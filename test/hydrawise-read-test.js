@@ -38,7 +38,7 @@ describe('Read node Testing', function () {
 
   describe('Node', function () {
     it('simple read node should be loaded', function (done) {
-      helper.load([controllerNode, clientNode, zoneNode, readNode], [
+      helper.load([controllerNode, zoneNode, readNode], [
         {
           id: 'fa0424dc.f9bd',
           type: 'hydrawise-read',
@@ -65,8 +65,8 @@ describe('Read node Testing', function () {
           id: 'b289851b.dec6f8',
           type: 'hydrawise-controller',
           z: '',
-          name: 'Windows VM',
-          host: '192.168.1.94'
+          name: 'BrainsController',
+          host: '192.168.93.1'
         },
         {
           id: '1528f96c.56d047',

@@ -11,7 +11,7 @@ module.exports = function (RED) {
   function hydrawisecontroller (config) {
     RED.nodes.createNode(this, config)
     this.name = config.name
-    this.host = config.host || '127.0.0.1'
+    this.host = config.host || ''
     this.type = config.type || 'CLOUD'
     this.host = config.host || ''
   }
