@@ -11,7 +11,7 @@
     category: 'config',
     defaults: {
       name: {value: ""},
-      type: {value: 'CLOUD'},
+      connectionType: {value: 'CLOUD'},
       key: {value:''},
       host: {value: ''}
     },
@@ -27,8 +27,11 @@
         <input type="text" id="node-config-input-name" placeholder="">
     </div>
     <div class="form-row">
-      <label for="node-config-input-type"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.type"></span></label>
-      <input type="text" id="node-config-input-type" placeholder="CLOUD">
+      <label for="node-config-input-connectionType"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.connectionType"></span></label>
+      <select id="node-config-input-connectionType" placeholder="CLOUD">
+        <option value="CLOUD">CLOUD</option>
+        <option value="LOCAL">LOCAL</option>
+      </select>
     </div>
     <div class="form-row">
       <label for="node-config-input-key"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.key"></span></label>
