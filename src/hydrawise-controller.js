@@ -14,6 +14,8 @@ module.exports = function (RED) {
     this.host = config.host || ''
     this.connectionType = config.connectionType || 'CLOUD'
     this.key = config.key || ''
+    this.user = config.user || ''
+    this.password = config.password || ''
     // instantiate the controller
     if (this.connectionType === 'CLOUD') {
       this.controller = new Hydrawise({
@@ -23,8 +25,17 @@ module.exports = function (RED) {
     } else {
       this.controller = new Hydrawise({
         type: this.connectionType,
-        host: this.host
+        host: this.host,
+        user: this.user,
+        password: this.password
       })
+      this.controller
+        .then(c => {
+          console.log('Controller created ' + c.name)
+        })
+        .catch(err => {
+          console.error(new Error(err))
+        })
     }
   }
 

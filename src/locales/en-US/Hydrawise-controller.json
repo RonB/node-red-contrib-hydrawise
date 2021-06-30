@@ -1,11 +1,12 @@
 {
     "hydrawise-contrib": {
       "label": {
-        "showErrors": "Show Errors",
         "connectionType": "Type",
         "host": "Host or IP",
         "key": "API Key",
-        "zoneAddress": "Zone address"
+        "zoneAddress": "Zone address",
+        "user": "User",
+        "password": "Password"
       }
     }
 }

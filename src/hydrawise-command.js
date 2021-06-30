@@ -19,11 +19,6 @@ module.exports = function (RED) {
     this.duration = config.duration
     this.command = config.command
     const node = this
-    /* this.myHydrawise = new Hydrawise({
-      type: this.controllerNode.connectionType,
-      key: this.controllerNode.key,
-      host: this.controllerNode.host
-    }) */
 
     node.status({ fill: 'yellow', shape: 'dot', text: 'waiting' })
     node.on('input', function (msg) {

@@ -35,8 +35,6 @@
           "name": "Name",
           "port": "Port",
           "topic": "Topic",
-          "user": "User",
-          "password": "Password",
           "showActivities": "Show Activities",
           "showErrors": "Show Errors",
           "zoneAddress": "Zone address",
