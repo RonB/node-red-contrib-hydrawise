@@ -8,7 +8,7 @@
 
 # node-red-contrib-hydrawise
 
-Building Automation and Control Networks Protocol toolbox for Node-RED.
+Hydrawise Irrigation toolbox for Node-RED.
 
 ## Install
 
@@ -37,10 +37,8 @@ It is just to provide nodes to wrap the Hydrawise API to Node-RED..
 
 ### Contribution NodeJS hydrawise® Library
 
-I'd like to give special thanks to [Fabio Huser][2] and [Apollon77][4]. 
+I'd like to give special thanks to [biancode][1] and [Martijn Dierckx][2]. 
 
 
 [1]:https://github.com/sponsors/biancode
-[2]:https://github.com/fh1ch
-[3]:https://osi.bianco-royal.com/
-[4]:https://github.com/Apollon77
+[2]:https://github.com/martijndierckx/
