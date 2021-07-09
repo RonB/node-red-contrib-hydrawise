@@ -23,13 +23,14 @@ module.exports = function (RED) {
     node.status({ fill: 'yellow', shape: 'dot', text: 'waiting' })
     node.on('input', function (msg) {
       // instantiate controller
+      const commandNode = this
       this.controllerNode.controller.getZones()
         .then(zones => {
-          this.zone = zones[this.zoneNode.zoneAddress]
+          commandNode.zone = zones[this.zoneNode.zoneAddress]
           // switch commands
-          switch (this.command) {
+          switch (commandNode.command) {
             case 'run':
-              this.controllerNode.controller.runZone(this.zone, config.duration || 15)
+              commandNode.controllerNode.controller.runZone(this.zone, config.duration || 15)
                 .then(response => {
                   node.status({ fill: 'green', shape: 'dot', text: 'running zone' })
                   msg.payload = response
@@ -43,7 +44,7 @@ module.exports = function (RED) {
                 })
               break
             case 'stop':
-              this.controllerNode.controller.stopZone(this.zone)
+              commandNode.controllerNode.controller.stopZone(this.zone)
                 .then(response => {
                   node.status({ fill: 'green', shape: 'dot', text: 'stopped zone' })
                   msg.payload = response
@@ -65,7 +66,7 @@ module.exports = function (RED) {
         .catch(error => {
           node.error(new Error('Zone not ready to ' + this.command), this)
           node.status({ fill: 'red', shape: 'dot', text: 'could not execute command ' + this.command })
-          msg.payload = error
+          msg.payload = { err: error, controller: this.controllerNode }
           node.send(msg)
         })
     })

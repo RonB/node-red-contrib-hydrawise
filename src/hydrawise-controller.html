@@ -12,8 +12,11 @@
     defaults: {
       name: {value: ""},
       connectionType: {value: 'CLOUD'},
+      
       key: {value:''},
-      host: {value: ''}
+      host: {value: ''},
+      user: {value: ''},
+      password: {value: ''}
     },
     label: function () {
       return this.name || "hydrawise controller";

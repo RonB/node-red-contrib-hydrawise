@@ -25,17 +25,11 @@ module.exports = function (RED) {
     } else {
       this.controller = new Hydrawise({
         type: this.connectionType,
+        key: this.key,
         host: this.host,
         user: this.user,
         password: this.password
       })
-      this.controller
-        .then(c => {
-          console.log('Controller created ' + c.name)
-        })
-        .catch(err => {
-          console.error(new Error(err))
-        })
     }
   }
 
