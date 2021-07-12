@@ -8,6 +8,8 @@
 
 # node-red-contrib-hydrawise
 
+WARNING - IN DEVELOPMENT - NOT READY FOR PRODUCTION
+
 Hydrawise Irrigation toolbox for Node-RED.
 
 ## Install

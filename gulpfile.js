@@ -11,7 +11,7 @@ const { series, src, dest } = require('gulp')
 const htmlmin = require('gulp-htmlmin')
 const jsdoc = require('gulp-jsdoc3')
 const clean = require('gulp-clean')
-const uglify = require('gulp-uglify')
+// const uglify = require('gulp-uglify')
 const babel = require('gulp-babel')
 const sourcemaps = require('gulp-sourcemaps')
 const pump = require('pump')
@@ -45,13 +45,13 @@ function cleanProject () {
 function releaseWebContent () {
   return src('src/*.htm*')
     .pipe(htmlmin({
-      minifyJS: true,
+      minifyJS: false,
       minifyCSS: true,
       minifyURLs: true,
       maxLineLength: 120,
       preserveLineBreaks: false,
-      collapseWhitespace: true,
-      collapseInlineTagWhitespace: true,
+      collapseWhitespace: false,
+      collapseInlineTagWhitespace: false,
       conservativeCollapse: true,
       processScripts: ['text/html'],
       quoteCharacter: "'"
@@ -67,7 +67,7 @@ function releaseJSContent (cb) {
       .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(replace(anchor, 'require(\'source-map-support\').install()'))
       .pipe(babel({ presets: ['@babel/env'] }))
-      .pipe(uglify())
+      // .pipe(uglify())
       .pipe(sourcemaps.write('maps')), dest('hydrawise')],
   cb)
 }

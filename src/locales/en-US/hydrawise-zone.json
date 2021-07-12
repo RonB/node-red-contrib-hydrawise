@@ -1,0 +1,8 @@
+{
+    "hydrawise-contrib": {
+        "label": {
+            "controller": "Controller",
+            "zoneAddress": "Zone address"
+        }
+    }
+}

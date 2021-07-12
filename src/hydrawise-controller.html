@@ -12,7 +12,6 @@
     defaults: {
       name: {value: ""},
       connectionType: {value: 'CLOUD'},
-      
       key: {value:''},
       host: {value: ''},
       user: {value: ''},
@@ -20,6 +19,25 @@
     },
     label: function () {
       return this.name || "hydrawise controller";
+    },
+    oneditprepare: function() {
+      $("#node-config-input-connectionType").change(function() {
+        var type = $(this).children("option:selected").val();
+        switch (type) {
+          case "CLOUD":
+            $(".key-row").show();
+            $(".host-row").hide();
+            $(".user-row").hide();
+            $(".password-row").hide();
+            break;
+          case "LOCAL":
+            $(".key-row").hide();
+            $(".host-row").show();
+            $(".user-row").show();
+            $(".password-row").show();        
+            break;
+         }
+      });
     }
   });
 </script>
@@ -36,28 +54,28 @@
         <option value="LOCAL">LOCAL</option>
       </select>
     </div>
-    <div class="form-row">
+    <div class="form-row key-row key-row">
       <label for="node-config-input-key"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.key"></span></label>
       <input type="text" id="node-config-input-key" placeholder="XXXX-XXXX-XXXX-XXXX">
     </div>
-    <div class="form-row">
+    <div class="form-row host-row">
         <label for="node-config-input-host"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.host"></span></label>
         <input type="text" id="node-config-input-host" placeholder="127.0.0.1">
     </div>
-    <div class="form-row">
+    <div class="form-row user-row" >
       <label for="node-config-input-user"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.user"></span></label>
       <input type="text" id="node-config-input-user" placeholder="">
   </div>
-  <div class="form-row">
+  <div class="form-row password-row">
     <label for="node-config-input-password"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.password"></span></label>
-    <input type="password" id="node-config-input-password" placeholder="127.0.0.1">
+    <input type="password" id="node-config-input-password" placeholder="">
 </div>
 </script>
 
 <script type="text/html" data-help-name="hydrawise-controller">
     <h2>hydrawise controller node</h2>
 
-    <h3>BETA</h3>
+    <h3>ALFA</h3>
 
     The hydrawise controller.
 </script>

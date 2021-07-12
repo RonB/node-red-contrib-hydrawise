@@ -26,31 +26,5 @@
       "errors": {
         "nooverride": "Warning: msg properties can no longer override set node properties. See bit.ly/nr-override-msg-props"
       }
-    },
-    "hydrawise-contrib": {
-      "common": {
-        "label": {
-          "type": "Type",
-          "controller": "Controller",
-          "name": "Name",
-          "port": "Port",
-          "topic": "Topic",
-          "showActivities": "Show Activities",
-          "showErrors": "Show Errors",
-          "zoneAddress": "Zone address",
-          "command": "Command",
-          "duration": "Duration"
-        },
-        "response": {
-        },
-        "getter": {
-        },
-        "run": {
-        },
-        "controller": {
-        },
-        "zone": {
-        }
-      }
     }
   }

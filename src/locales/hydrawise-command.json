@@ -1,0 +1,10 @@
+{
+    "hydrawise": {
+        "label": {
+            "controller": "Controller",
+            "zone": "Zone",
+            "command":"Command",
+            "duration":"Duration"
+        }
+    }
+}

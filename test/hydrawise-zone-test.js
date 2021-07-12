@@ -10,8 +10,8 @@
 
 'use strict'
 
-var controllerNode = require('node-red-contrib-hydrawise-master/src/hydrawise-controller')
-var zoneNode = require('node-red-contrib-hydrawise-master/src/hydrawise-zone')
+var controllerNode = require('../src/hydrawise-controller.js')
+var zoneNode = require('../src/hydrawise-zone.js')
 
 var helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
