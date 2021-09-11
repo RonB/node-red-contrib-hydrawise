@@ -46,9 +46,13 @@ After installation there will be a node 'hydrawise command' in your pallette. Dr
 choose one of the 4 commands:
 
 'run' to start watering the zone, also choose set the duration
+
 'stop' to stop watering
+
 'suspend' to suspend the watering
+
 'info' to list the zones of the configured controller 
+
 
 ## License
 
