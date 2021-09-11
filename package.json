@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-hydrawise",
-  "version": "0.0.3-alpha.1",
+  "version": "0.0.3-alpha.2",
   "private": false,
   "description": "The hydrawise toolbox package for Node-RED.",
   "repository": {
@@ -24,9 +24,8 @@
   },
   "node-red": {
     "nodes": {
-      "hydrawise-controller": "hydrawise/hydrawise-controller.js",
-      "hydrawise-zone": "hydrawise/hydrawise-zone.js",
-      "hydrawise-command": "hydrawise/hydrawise-command.js"
+      "hydrawise-controller": "src/hydrawise-controller.js",
+      "hydrawise-command": "src/hydrawise-command.js"
     }
   },
   "engines": {
@@ -57,6 +56,7 @@
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
+    "@types/node": "^16.7.2",
     "chai": "^4.2.0",
     "codacy-coverage": "^3.4.0",
     "conventional-changelog-cli": "^2.0.27",
