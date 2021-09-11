@@ -13,9 +13,9 @@
     defaults: {
       name: {value: ''},
       controller: {type: "hydrawise-controller", required:true},
-      zone: {type: "hydrawise-zone", required:true},
+      zone: {value: "all", required:true},
       command: {value: "run"},
-      duration: {value: 30}
+      duration: {value: 1800}
     },
     inputs: 1,
     outputs: 1,
@@ -28,7 +28,83 @@
       return this.name ? "node_label_italic" : "";
     },
     oneditprepare: function () {
-      let node = this
+      
+      var controllerNode = RED.nodes.node(this.controller);
+
+      // get parameters
+      var type = controllerNode.connectionType;
+      var params  = {
+        connectionType: type,
+        controllerNode: this.controller
+      };
+      if(type == "CLOUD") {
+        params.key = controllerNode.key;
+      } else {
+        params.host = controllerNode.host;
+        params.user = controllerNode.user;
+        params.password = controllerNode.password;
+      }
+      $.getJSON('getControllers', params, data => {
+          var status = $("#node-config-input-controller-status");
+          if(data.error) {
+            status.text("Controller not connected. check your settings.");
+            status.css('color', 'red');
+          } else {
+            status.text("Controller " + data[0].name + "  connected. Status: " + data[0].status);
+            status.css('color', 'green');
+          }
+      })
+      // show/hide zone and duration depending on comnmanbd
+      $("#node-config-input-command").change(function() {
+        var command = $(this).val();
+        switch (command) {
+          case "run":
+          case "suspend":
+            $(".zone-row").show();
+            $(".duration-row").show();
+            break;
+          case "runAllZones":
+          case "suspendAllZones":
+            $(".zone-row").hide();
+            $(".duration-row").show();
+            break;
+          case "stop":
+          case "stopAllZones":
+            $(".duration-row").show();
+            break;
+          case "info":
+            $(".zone-row").hide();
+            $(".duration-row").hide();
+            break;
+         }
+      });
+      // search zones
+      $("#node-config-lookup-zone").click(() => {
+        $('#node-config-lookup-zone-icon').removeClass('fa-search');
+        $('#node-config-lookup-zone-icon').addClass('spinner');
+        $('#node-config-lookup-zone').addClass('disabled');
+        debugger
+        $.getJSON('getZones', params, zones => {
+          if(zones.error) {
+          
+          } else {
+            $('#node-config-lookup-zone-icon').addClass('fa-search');
+            $('#node-config-lookup-zone-icon').removeClass('spinner');
+            $('#node-config-lookup-zone').removeClass('disabled');
+            var items = [];
+            zones.forEach(zone => {
+              items.push(zone.zone + ":  " + zone.name);
+            })
+            $("#node-input-zone").autocomplete({
+              source:items,
+              minLength:0,
+              close: function( _event, _ui ) {
+                $('#node-input-zone').val(this.value);
+              }
+            }).autocomplete('search','');
+          }
+        });
+      });
     }
   });
 </script>
@@ -40,42 +116,46 @@
     </div>
     <div class="form-row">
         <hr>
-        <h4>Select controller and zone</h4>
+        <h4>Select controller</h4>
         <hr>
     </div>
     <div class="form-row">
       <label for="node-input-controller"><i class="icon-globe"></i> <span data-i18n="hydrawise-contrib.label.controller"></span></label>
-      <input type="text" id="node-input-controller">
-  </div>
-    <div class="form-row">
-        <label for="node-input-zone"><i class="icon-globe"></i> <span data-i18n="hydrawise-contrib.label.zone"></span></label>
-        <input type="text" id="node-input-zone">
+      <input type="text" id="node-input-controller"><br/><br/>
+      <span style="color:rgb(128, 128, 7)" id="node-config-input-controller-status" height="20px"></span>
     </div>
     <div class="form-row">
       <hr>
       <h4>Command</h4>
       <hr>
-  </div>
-    <div class="form-row">
+    </div>
+    <div class="form-row command-row">
         <label for="node-input-command"><i class="icon-globe"></i> <span data-i18n="hydrawise-contrib.label.command"></span></label>
         <select id="node-input-command" placeholder="">
           <option value="run">Run</option>
           <option value="stop">Stop</option>
           <option value="suspend">Suspend</option>
+          <option value="runAllZones">Run all zones</option>
+          <option value="stopAllZones">Stop all zones</option>
+          <option value="suspendAllZones">Suspend all zones</option>
           <option value="info">Information</option>
         </select>
     </div>
-    <div class="form-row">
+    <div class="form-row zone-row">
+      <label for="node-input-zone"><span data-i18n="hydrawise-contrib.label.zone"></span></label>
+      <input id="node-input-zone" placeholder="" style="width:60%">
+      <a id="node-config-lookup-zone" class="btn"><i id="node-config-lookup-zone-icon" class="fa fa-search"></i></a>
+    </div>
+    <div class="form-row duration-row">
       <label for="node-input-duration"><i class="icon-globe"></i> <span data-i18n="hydrawise-contrib.label.duration"></span></label>
       <input type="number" id="node-input-duration">
-  </div>
+    </div>
     <hr>
 </script>
 
 <script type="text/html" data-help-name="hydrawise-command">
-    <h2>hydrawise command node</h2>
+    <h2>Hydrawise command node</h2>
 
-    <h3>ALPHA</h3>
+    <div>This node sends commandfs to the configured controller. Using this node you can automate the irrigation of your zones based on onther events than standard available in the (terrific) hydrawise app.</div>
     
-
 </script>

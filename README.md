@@ -14,6 +14,17 @@ Hydrawise Irrigation toolbox for Node-RED.
 
 ## Install
 
+### Directly in Node-RED via palette manager
+
+Start Node-RED
+
+Select 'Manage palette' from menu top-right
+
+Click on the Install tab
+
+Search for hydrawise in the searchbar and find node-red-contrib-hydrawise
+
+### Manual install
 Run command on Node-RED installation directory.
 
 	npm install node-red-contrib-hydrawise 
@@ -28,11 +39,22 @@ try these options on npm install to build, if you have problems to install
     
 ![Flow Example](images/hydrawiseFlowExamples.png)
 
-### License
+## Usage
+
+After installation there will be a node 'hydrawise command' in your pallette. Drag a command node onto your flow and configure the hydrawise controller configuration node.
+
+choose one of the 4 commands:
+
+'run' to start watering the zone, also choose set the duration
+'stop' to stop watering
+'suspend' to suspend the watering
+'info' to list the zones of the configured controller 
+
+## License
 
 The MIT License
 
-### Important
+## Important
 
 This is **not** an official product of the Hunter Company.
 It is just to provide nodes to wrap the Hydrawise API to Node-RED.. 

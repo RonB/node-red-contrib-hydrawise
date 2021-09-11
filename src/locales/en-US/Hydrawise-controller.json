@@ -5,7 +5,8 @@
             "key": "API Key",
             "host":"Host or IP",
             "user":"Username",
-            "password":"Password"
+            "password":"Password",
+            "test": "Test connection"
         }
     }
 }

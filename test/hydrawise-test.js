@@ -11,12 +11,11 @@
 'use strict'
 
 var controllerNode = require('../src/hydrawise-controller.js')
-var zoneNode = require('../src/hydrawise-zone.js')
 
 var helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-describe('Zone node Testing', function () {
+describe('Controller node Testing', function () {
   beforeEach(function (done) {
     helper.startServer(function () {
       done()
@@ -36,14 +35,8 @@ describe('Zone node Testing', function () {
   })
 
   describe('Node', function () {
-    it('Hydrawise zone should be read', function (done) {
-      helper.load([controllerNode, zoneNode], [
-         {
-          id: 'cf0dca49.2a9ac',
-          type: 'hydrawise-zone',
-          name: 'First Zone',
-          zoneAddress: '0'
-        },
+    it('Hydrawise controller should be read', function (done) {
+      helper.load([controllerNode], [
         {
           id: 'b289851b.dec6f8',
           type: 'hydrawise-controller',
