@@ -1,216 +1,104 @@
 [
   {
-    "id": "300fd127.935c9e",
+    "id": "426cf0dc.0c98c",
     "type": "tab",
-    "label": "hydrawise Tests",
+    "label": "Hydrawise",
     "disabled": false,
     "info": ""
   },
   {
-    "id": "1474e606.834fea",
-    "type": "hydrawise-zone",
-    "z": "300fd127.935c9e",
-    "name": "Who is?",
-    "commandType": "whoIs",
-    "timeDuration": 0,
-    "enableDisable": 0,
-    "controllerState": 0,
-    "isUtc": true,
-    "lowLimit": "1",
-    "highLimit": "254",
-    "controller": "b289851b.dec6f8",
-    "server": "977c5141.b0d14",
-    "x": 560,
-    "y": 60,
+    "id": "c089baef.036cf8",
+    "type": "inject",
+    "z": "426cf0dc.0c98c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 100,
+    "y": 100,
     "wires": [
       [
-        "200bcd1a.e47c92"
+        "c5b82687.291d38"
       ]
     ]
   },
   {
-    "id": "200bcd1a.e47c92",
+    "id": "72990d.882306f4",
     "type": "debug",
-    "z": "300fd127.935c9e",
+    "z": "426cf0dc.0c98c",
     "name": "",
     "active": true,
     "tosidebar": true,
     "console": false,
     "tostatus": false,
-    "complete": "true",
-    "x": 950,
-    "y": 280,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 550,
+    "y": 180,
     "wires": []
   },
   {
-    "id": "b302933.0273a7",
-    "type": "inject",
-    "z": "300fd127.935c9e",
-    "name": "",
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 220,
-    "y": 60,
+    "id": "c5b82687.291d38",
+    "type": "hydrawise-command",
+    "z": "426cf0dc.0c98c",
+    "name": "Run gazon",
+    "controller": "ccb60647.1dda98",
+    "zone": "1:  Gazon",
+    "command": "run",
+    "duration": "600",
+    "x": 270,
+    "y": 100,
     "wires": [
       [
-        "1474e606.834fea"
+        "72990d.882306f4"
       ]
     ]
   },
   {
-    "id": "4e2a4428.2a8d9c",
-    "type": "hydrawise-read",
-    "z": "300fd127.935c9e",
-    "name": "Multiple Read",
-    "objectType": "0",
-    "zone": "cf0dca49.2a9ac",
-    "propertyId": "85",
-    "controller": "b289851b.dec6f8",
-    "server": "977c5141.b0d14",
-    "multipleRead": true,
-    "x": 580,
-    "y": 300,
-    "wires": [
-      [
-        "200bcd1a.e47c92"
-      ]
-    ]
-  },
-  {
-    "id": "2e0dd7f5.12157",
-    "type": "inject",
-    "z": "300fd127.935c9e",
-    "name": "",
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 220,
-    "y": 300,
-    "wires": [
-      [
-        "4e2a4428.2a8d9c"
-      ]
-    ]
-  },
-  {
-    "id": "86a69fc0.d172a8",
-    "type": "hydrawise-write",
-    "z": "300fd127.935c9e",
-    "name": "",
-    "objectType": "1",
-    "zone": "cf0dca49.2a9ac",
-    "valueTag": "1",
-    "valueValue": "",
-    "propertyId": "28",
-    "controller": "b289851b.dec6f8",
-    "server": "977c5141.b0d14",
-    "multipleWrite": true,
-    "x": 600,
-    "y": 440,
-    "wires": [
-      [
-        "200bcd1a.e47c92"
-      ]
-    ]
-  },
-  {
-    "id": "53594965.4933c8",
-    "type": "inject",
-    "z": "300fd127.935c9e",
-    "name": "",
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 220,
-    "y": 440,
-    "wires": [
-      [
-        "70ffebee.2bde24"
-      ]
-    ]
-  },
-  {
-    "id": "2f3b2773.acef9",
-    "type": "hydrawise-zone",
-    "z": "300fd127.935c9e",
-    "name": "Time sync",
-    "commandType": "timeSync",
-    "timeDuration": 0,
-    "enableDisable": 0,
-    "controllerState": 0,
-    "isUtc": false,
-    "lowLimit": "1",
-    "highLimit": "254",
-    "controller": "b289851b.dec6f8",
-    "server": "977c5141.b0d14",
-    "x": 570,
-    "y": 120,
-    "wires": [
-      [
-        "200bcd1a.e47c92"
-      ]
-    ]
-  },
-  {
-    "id": "8b2f4c26.5b25b",
-    "type": "inject",
-    "z": "300fd127.935c9e",
-    "name": "",
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 220,
-    "y": 120,
-    "wires": [
-      [
-        "2f3b2773.acef9"
-      ]
-    ]
-  },
-  {
-    "id": "9188383b.0b6d98",
-    "type": "hydrawise-zone",
-    "z": "300fd127.935c9e",
-    "name": "controller warm start",
-    "commandType": "reinitializecontroller",
-    "timeDuration": 0,
-    "enableDisable": 0,
-    "controllerState": "1",
-    "isUtc": true,
-    "lowLimit": "1",
-    "highLimit": "254",
-    "controller": "b289851b.dec6f8",
-    "server": "977c5141.b0d14",
-    "x": 590,
+    "id": "78a53c22.1cceb4",
+    "type": "hydrawise-command",
+    "z": "426cf0dc.0c98c",
+    "name": "Stop gazon",
+    "controller": "ccb60647.1dda98",
+    "zone": "1:  Gazon",
+    "command": "stop",
+    "duration": "600",
+    "x": 270,
     "y": 180,
     "wires": [
       [
-        "200bcd1a.e47c92"
+        "72990d.882306f4"
       ]
     ]
   },
   {
-    "id": "1727085a.2ad738",
+    "id": "9fc6e1bd.c67a7",
     "type": "inject",
-    "z": "300fd127.935c9e",
+    "z": "426cf0dc.0c98c",
     "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
     "repeat": "",
     "crontab": "",
     "once": false,
@@ -218,19 +106,45 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 220,
+    "x": 100,
     "y": 180,
     "wires": [
       [
-        "9188383b.0b6d98"
+        "78a53c22.1cceb4"
       ]
     ]
   },
   {
-    "id": "a9b32191.c9f9b8",
+    "id": "b7103432.15e138",
+    "type": "hydrawise-command",
+    "z": "426cf0dc.0c98c",
+    "name": "Info",
+    "controller": "ccb60647.1dda98",
+    "zone": "6",
+    "command": "info",
+    "duration": "1800",
+    "x": 250,
+    "y": 260,
+    "wires": [
+      [
+        "72990d.882306f4"
+      ]
+    ]
+  },
+  {
+    "id": "aa26cdd2.783e",
     "type": "inject",
-    "z": "300fd127.935c9e",
+    "z": "426cf0dc.0c98c",
     "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
     "repeat": "",
     "crontab": "",
     "once": false,
@@ -238,160 +152,82 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 220,
-    "y": 360,
+    "x": 100,
+    "y": 260,
     "wires": [
       [
-        "9606ff81.93a5"
+        "b7103432.15e138"
       ]
     ]
   },
   {
-    "id": "a5b92606.bafb38",
-    "type": "hydrawise-write",
-    "z": "300fd127.935c9e",
-    "name": "",
-    "objectType": "40",
-    "zone": "be63e3d0.b280c",
-    "valueTag": "7",
-    "valueValue": "Comfort Plus",
-    "propertyId": "85",
-    "priority": "8",
-    "controller": "b289851b.dec6f8",
-    "server": "977c5141.b0d14",
-    "multipleWrite": false,
-    "x": 600,
-    "y": 500,
-    "wires": [
-      [
-        "200bcd1a.e47c92"
-      ]
-    ]
-  },
-  {
-    "id": "35d9327f.6ce47e",
-    "type": "inject",
-    "z": "300fd127.935c9e",
-    "name": "",
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 220,
-    "y": 500,
-    "wires": [
-      [
-        "a5b92606.bafb38"
-      ]
-    ]
-  },
-  {
-    "id": "9606ff81.93a5",
-    "type": "hydrawise-read",
-    "z": "300fd127.935c9e",
-    "name": "Simple Read",
-    "objectType": "40",
-    "zone": "be63e3d0.b280c",
-    "propertyId": "85",
-    "controller": "b289851b.dec6f8",
-    "server": "977c5141.b0d14",
-    "multipleRead": false,
-    "x": 570,
-    "y": 360,
-    "wires": [
-      [
-        "200bcd1a.e47c92"
-      ]
-    ]
-  },
-  {
-    "id": "9eae08cc.131018",
-    "type": "hydrawise-zone",
-    "z": "300fd127.935c9e",
-    "name": "DCC disable 10 sec.",
-    "commandType": "controllerCommunicationControl",
-    "timeDuration": "10",
-    "enableDisable": "1",
-    "controllerState": "255",
-    "isUtc": true,
-    "lowLimit": "1",
-    "highLimit": "254",
-    "controller": "b289851b.dec6f8",
-    "server": "977c5141.b0d14",
-    "x": 600,
-    "y": 240,
-    "wires": [
-      [
-        "200bcd1a.e47c92"
-      ]
-    ]
-  },
-  {
-    "id": "c94f841c.dd7fb",
-    "type": "inject",
-    "z": "300fd127.935c9e",
-    "name": "",
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 220,
-    "y": 240,
-    "wires": [
-      [
-        "9eae08cc.131018"
-      ]
-    ]
-  },
-  {
-    "id": "70ffebee.2bde24",
-    "type": "function",
-    "z": "300fd127.935c9e",
-    "name": "hydrawise write msg",
-    "func": "msg.payload = {\n    // controllerIPAddress: '127.0.0.1'\n    values: [\n        {\n            // objectId: {type: 8, zone: 44301}, \n            values: [\n                {property: {id: 28, index: 12}, value: [{type: 1, value: true}], priority: 8}\n            ]\n        }\n    ]\n}\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "x": 390,
+    "id": "f749f6cc.204698",
+    "type": "mqtt in",
+    "z": "426cf0dc.0c98c",
+    "name": "Tuinslang knop",
+    "topic": "shellies/tuin/border_zwembad/tuinslang/input_event/0",
+    "qos": "2",
+    "datatype": "auto",
+    "broker": "af836632.5387a8",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "x": 100,
     "y": 440,
     "wires": [
       [
-        "86a69fc0.d172a8"
+        "6399fca.dd38f04"
       ]
     ]
   },
   {
-    "id": "4002625d.6c648c",
-    "type": "hydrawise-write",
-    "z": "300fd127.935c9e",
-    "name": "",
-    "objectType": "40",
-    "zone": "be63e3d0.b280c",
-    "valueTag": "7",
-    "valueValue": "Comfort",
-    "propertyId": "85",
-    "priority": "8",
-    "controller": "b289851b.dec6f8",
-    "server": "977c5141.b0d14",
-    "multipleWrite": false,
-    "x": 600,
-    "y": 580,
+    "id": "6399fca.dd38f04",
+    "type": "hydrawise-command",
+    "z": "426cf0dc.0c98c",
+    "name": "Border zwembad - 30 minuten",
+    "controller": "ccb60647.1dda98",
+    "zone": "2:  Border zwembad",
+    "command": "run",
+    "duration": "3600",
+    "x": 330,
+    "y": 440,
     "wires": [
       [
-        "200bcd1a.e47c92"
+        "72990d.882306f4"
       ]
     ]
   },
   {
-    "id": "c845655.0cd0198",
+    "id": "c0c8f120a2d74c3c",
+    "type": "hydrawise-command",
+    "z": "426cf0dc.0c98c",
+    "name": "stop all zones",
+    "controller": "ccb60647.1dda98",
+    "zone": "all",
+    "command": "stopAllZones",
+    "duration": 1800,
+    "x": 280,
+    "y": 320,
+    "wires": [
+      [
+        "72990d.882306f4"
+      ]
+    ]
+  },
+  {
+    "id": "3d3646ae8d574745",
     "type": "inject",
-    "z": "300fd127.935c9e",
+    "z": "426cf0dc.0c98c",
     "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
     "repeat": "",
     "crontab": "",
     "once": false,
@@ -399,40 +235,93 @@
     "topic": "",
     "payload": "",
     "payloadType": "date",
-    "x": 220,
-    "y": 580,
+    "x": 100,
+    "y": 320,
     "wires": [
       [
-        "4002625d.6c648c"
+        "c0c8f120a2d74c3c"
       ]
     ]
   },
   {
-    "id": "b289851b.dec6f8",
+    "id": "f115d6896a649dfe",
+    "type": "inject",
+    "z": "426cf0dc.0c98c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 100,
+    "y": 380,
+    "wires": [
+      [
+        "b82c2403222ef361"
+      ]
+    ]
+  },
+  {
+    "id": "b82c2403222ef361",
+    "type": "hydrawise-command",
+    "z": "426cf0dc.0c98c",
+    "name": "run all zones",
+    "controller": "ccb60647.1dda98",
+    "zone": "1:  Gazon",
+    "command": "runAllZones",
+    "duration": "0",
+    "x": 270,
+    "y": 380,
+    "wires": [
+      [
+        "72990d.882306f4"
+      ]
+    ]
+  },
+  {
+    "id": "ccb60647.1dda98",
     "type": "hydrawise-controller",
-    "name": "Windows VM",
-    "host": "192.168.8.162"
+    "name": "Brains",
+    "connectionType": "CLOUD",
+    "key": "xxxx-xxxx-xxxx-xxxx",
+    "host": "",
+    "user": "",
+    "password": ""
   },
   {
-    "id": "977c5141.b0d14",
-    "type": "hydrawise-Client",
-    "z": "300fd127.935c9e",
-    "name": "Local hydrawise",
-    "adpuTimeout": "3000",
-    "port": "47808",
-    "interface": "192.168.8.133",
-    "broadcastAddress": "192.168.8.255"
-  },
-  {
-    "id": "cf0dca49.2a9ac",
-    "type": "hydrawise-zone",
-    "name": "Room Simulator YABE",
-    "zoneAddress": "0"
-  },
-  {
-    "id": "be63e3d0.b280c",
-    "type": "hydrawise-zone",
-    "name": "Text 1",
-    "zoneAddress": "1"
+    "id": "af836632.5387a8",
+    "type": "mqtt-broker",
+    "name": "BrainsMQTTBroker",
+    "broker": "192.168.0.2",
+    "port": "1883",
+    "clientid": "localnodered",
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "sessionExpiry": ""
   }
 ]
