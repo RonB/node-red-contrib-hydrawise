@@ -1,298 +1,153 @@
 [
   {
-    "id": "426cf0dc.0c98c",
+    "id": "0baac006d74f782e",
     "type": "tab",
-    "label": "Hydrawise",
+    "label": "My Garden Watering",
     "disabled": false,
-    "info": ""
+    "info": "",
+    "env": []
   },
   {
-    "id": "c089baef.036cf8",
-    "type": "inject",
-    "z": "426cf0dc.0c98c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 100,
-    "y": 100,
+    "id": "68ed61e5cc7b5912",
+    "type": "ui_template",
+    "z": "0baac006d74f782e",
+    "group": "37f775c5e76b552d",
+    "name": "Zones",
+    "order": 1,
+    "width": "24",
+    "height": "18",
+    "format": "<div flex layout=\"row\" layout-wrap layout-margin>\n    <div class=\"md-whiteframe-2dp\" ng-repeat=\"zone in msg.payload\" flex=\"25\" layout-padding layout=\"column\">\n        <md-toolbar style=\"margin:0\" ng-class=\"{'md-warn': zone.isRunning}\">\n            <span class=\"md-headline\">{{zone.name}}</span>\n            <span class=\"md-subhead\">Zone {{zone.zone}}</span>       \n        </md-toolbar>\n        <div layout=\"row\" layout-align=\"center center\">\n            <img width=\"100px\" ng-show=\"{{zone.isRunning}}\" flex=\"30\"  ng-src=\"/icons/node-red-contrib-hydrawise/spray_on.gif\">\n            <img width=\"100px\" ng-show=\"{{!zone.isRunning}}\" flex=\"30\" ng-src=\"/icons/node-red-contrib-hydrawise/spray_off.gif\">\n        </div>\n        <h3>Next run</h3>\n        <p ng-bind=\"zone.nextRunAt | date:'EEEE dd MMMM yyyy hh:mm'\"></p>\n        <p>for {{ (zone.nextRunDuration / 60) | number: '1' }} minutes</p>\n        <div layout-align=\"center center\" layout=\"row\">\n            <md-button class=\"md-fab md-warn md-hue-3\" aria-label=\"Run {{zone.name}}}}\" ng-click=\"send({payload: {'command':'run', 'zone': zone.zone , 'duration': 1800}})\">\n                <md-icon md-font-icon=\"play_arrow\"></md-icon>\n            </md-button>\n            <md-button class=\"md-fab md-warn md-hue-3\" aria-label=\"Stop {{zone.name}}\" ng-click=\"send({payload: {'command':'stop', 'zone': zone.zone }})\">\n                <md-icon md-font-icon=\"stop\"></md-icon>\n            </md-button>\n            <md-button class=\"md-fab md-warn md-hue-3\" aria-label=\"Suspend {{zone.name}}\" ng-click=\"send({payload: {'command':'suspend', 'zone': zone.zone, 'duration': 1800}})\">\n                <md-icon md-font-icon=\"pause\"></md-icon>\n            </md-button>\n        </div>\n    </div>\n</div>",
+    "storeOutMessages": false,
+    "fwdInMessages": false,
+    "resendOnRefresh": false,
+    "templateScope": "local",
+    "x": 410,
+    "y": 120,
     "wires": [
       [
-        "c5b82687.291d38"
+        "2a141b03f19ef08a"
       ]
     ]
   },
   {
-    "id": "72990d.882306f4",
-    "type": "debug",
-    "z": "426cf0dc.0c98c",
-    "name": "",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 550,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "c5b82687.291d38",
-    "type": "hydrawise-command",
-    "z": "426cf0dc.0c98c",
-    "name": "Run gazon",
-    "controller": "ccb60647.1dda98",
-    "zone": "1:  Gazon",
-    "command": "run",
-    "duration": "600",
-    "x": 270,
-    "y": 100,
-    "wires": [
-      [
-        "72990d.882306f4"
-      ]
-    ]
-  },
-  {
-    "id": "78a53c22.1cceb4",
-    "type": "hydrawise-command",
-    "z": "426cf0dc.0c98c",
-    "name": "Stop gazon",
-    "controller": "ccb60647.1dda98",
-    "zone": "1:  Gazon",
-    "command": "stop",
-    "duration": "600",
-    "x": 270,
-    "y": 180,
-    "wires": [
-      [
-        "72990d.882306f4"
-      ]
-    ]
-  },
-  {
-    "id": "9fc6e1bd.c67a7",
-    "type": "inject",
-    "z": "426cf0dc.0c98c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 100,
-    "y": 180,
-    "wires": [
-      [
-        "78a53c22.1cceb4"
-      ]
-    ]
-  },
-  {
-    "id": "b7103432.15e138",
-    "type": "hydrawise-command",
-    "z": "426cf0dc.0c98c",
-    "name": "Info",
-    "controller": "ccb60647.1dda98",
-    "zone": "6",
-    "command": "info",
-    "duration": "1800",
-    "x": 250,
-    "y": 260,
-    "wires": [
-      [
-        "72990d.882306f4"
-      ]
-    ]
-  },
-  {
-    "id": "aa26cdd2.783e",
-    "type": "inject",
-    "z": "426cf0dc.0c98c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 100,
-    "y": 260,
-    "wires": [
-      [
-        "b7103432.15e138"
-      ]
-    ]
-  },
-  {
-    "id": "f749f6cc.204698",
-    "type": "mqtt in",
-    "z": "426cf0dc.0c98c",
-    "name": "Tuinslang knop",
-    "topic": "shellies/tuin/border_zwembad/tuinslang/input_event/0",
-    "qos": "2",
-    "datatype": "auto",
-    "broker": "af836632.5387a8",
-    "nl": false,
-    "rap": true,
-    "rh": 0,
-    "x": 100,
-    "y": 440,
-    "wires": [
-      [
-        "6399fca.dd38f04"
-      ]
-    ]
-  },
-  {
-    "id": "6399fca.dd38f04",
-    "type": "hydrawise-command",
-    "z": "426cf0dc.0c98c",
-    "name": "Border zwembad - 30 minuten",
-    "controller": "ccb60647.1dda98",
-    "zone": "2:  Border zwembad",
-    "command": "run",
-    "duration": "3600",
-    "x": 330,
-    "y": 440,
-    "wires": [
-      [
-        "72990d.882306f4"
-      ]
-    ]
-  },
-  {
-    "id": "c0c8f120a2d74c3c",
-    "type": "hydrawise-command",
-    "z": "426cf0dc.0c98c",
-    "name": "stop all zones",
-    "controller": "ccb60647.1dda98",
-    "zone": "all",
-    "command": "stopAllZones",
-    "duration": 1800,
+    "id": "07c87de7f8e69cf1",
+    "type": "function",
+    "z": "0baac006d74f782e",
+    "name": "get zones",
+    "func": "// remove circular controller reference from zones\nmsg.payload = msg.payload.controller.zones.map(({controller, ...rest})=> {\n    return rest;\n});\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
     "x": 280,
-    "y": 320,
+    "y": 120,
     "wires": [
       [
-        "72990d.882306f4"
+        "68ed61e5cc7b5912"
       ]
     ]
   },
   {
-    "id": "3d3646ae8d574745",
-    "type": "inject",
-    "z": "426cf0dc.0c98c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 100,
-    "y": 320,
-    "wires": [
-      [
-        "c0c8f120a2d74c3c"
-      ]
-    ]
-  },
-  {
-    "id": "f115d6896a649dfe",
-    "type": "inject",
-    "z": "426cf0dc.0c98c",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 100,
-    "y": 380,
-    "wires": [
-      [
-        "b82c2403222ef361"
-      ]
-    ]
-  },
-  {
-    "id": "b82c2403222ef361",
+    "id": "cf304ab23f354268",
     "type": "hydrawise-command",
-    "z": "426cf0dc.0c98c",
-    "name": "run all zones",
-    "controller": "ccb60647.1dda98",
-    "zone": "1:  Gazon",
-    "command": "runAllZones",
-    "duration": "0",
-    "x": 270,
-    "y": 380,
+    "z": "0baac006d74f782e",
+    "name": "",
+    "controller": "617f6af19a01d558",
+    "zone": "",
+    "command": "info",
+    "duration": 1800,
+    "x": 700,
+    "y": 120,
     "wires": [
       [
-        "72990d.882306f4"
+        "1bf8402052ba4345"
       ]
     ]
   },
   {
-    "id": "ccb60647.1dda98",
+    "id": "1bf8402052ba4345",
+    "type": "hydrawise-command",
+    "z": "0baac006d74f782e",
+    "name": "get info",
+    "controller": "617f6af19a01d558",
+    "zone": "",
+    "command": "info",
+    "duration": 1800,
+    "x": 120,
+    "y": 120,
+    "wires": [
+      [
+        "07c87de7f8e69cf1"
+      ]
+    ]
+  },
+  {
+    "id": "703eb3f17e792c0c",
+    "type": "inject",
+    "z": "0baac006d74f782e",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "2",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 130,
+    "y": 60,
+    "wires": [
+      [
+        "1bf8402052ba4345"
+      ]
+    ]
+  },
+  {
+    "id": "2a141b03f19ef08a",
+    "type": "switch",
+    "z": "0baac006d74f782e",
+    "name": "",
+    "property": "payload.command",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "nnull"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 550,
+    "y": 120,
+    "wires": [
+      [
+        "cf304ab23f354268"
+      ]
+    ]
+  },
+  {
+    "id": "37f775c5e76b552d",
+    "type": "ui_group",
+    "name": "Zones",
+    "tab": "d0e9aeb8e316740a",
+    "order": 1,
+    "disp": true,
+    "width": "24",
+    "collapse": false
+  },
+  {
+    "id": "617f6af19a01d558",
     "type": "hydrawise-controller",
-    "name": "Brains",
+    "name": "brains",
     "connectionType": "CLOUD",
     "key": "xxxx-xxxx-xxxx-xxxx",
     "host": "",
@@ -300,28 +155,12 @@
     "password": ""
   },
   {
-    "id": "af836632.5387a8",
-    "type": "mqtt-broker",
-    "name": "BrainsMQTTBroker",
-    "broker": "192.168.0.2",
-    "port": "1883",
-    "clientid": "localnodered",
-    "usetls": false,
-    "protocolVersion": "4",
-    "keepalive": "60",
-    "cleansession": true,
-    "birthTopic": "",
-    "birthQos": "0",
-    "birthPayload": "",
-    "birthMsg": {},
-    "closeTopic": "",
-    "closeQos": "0",
-    "closePayload": "",
-    "closeMsg": {},
-    "willTopic": "",
-    "willQos": "0",
-    "willPayload": "",
-    "willMsg": {},
-    "sessionExpiry": ""
+    "id": "d0e9aeb8e316740a",
+    "type": "ui_tab",
+    "name": "Garden",
+    "icon": "fa-tree",
+    "order": 1,
+    "disabled": false,
+    "hidden": false
   }
 ]
