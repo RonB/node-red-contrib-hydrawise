@@ -29,20 +29,12 @@
     },
     oneditprepare: function () {
       var controllerNode = RED.nodes.node(this.controller);
-
       // get parameters
-      var type = controllerNode.connectionType;
       var params = {
-        connectionType: type,
         controllerNode: this.controller,
+        key: controllerNode.key,
       };
-      if (type == "CLOUD") {
-        params.key = controllerNode.key;
-      } else {
-        params.host = controllerNode.host;
-        params.user = controllerNode.user;
-        params.password = controllerNode.password;
-      }
+
       $.getJSON("getControllers", params, (data) => {
         var status = $("#node-config-input-controller-status");
         if (data.error) {

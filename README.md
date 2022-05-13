@@ -112,11 +112,11 @@ You can also pass a message payload with the command, zone and duration properti
     "type": "hydrawise-command",
     "z": "0baac006d74f782e",
     "name": "",
-    "controller": "617f6af19a01d558",
+    "controller": "094632001153f89c",
     "zone": "",
     "command": "info",
     "duration": 1800,
-    "x": 700,
+    "x": 720,
     "y": 120,
     "wires": [["1bf8402052ba4345"]]
   },
@@ -125,8 +125,8 @@ You can also pass a message payload with the command, zone and duration properti
     "type": "hydrawise-command",
     "z": "0baac006d74f782e",
     "name": "get info",
-    "controller": "617f6af19a01d558",
-    "zone": "",
+    "controller": "094632001153f89c",
+    "zone": "1:  Gazon",
     "command": "info",
     "duration": 1800,
     "x": 120,
@@ -188,14 +188,10 @@ You can also pass a message payload with the command, zone and duration properti
     "collapse": false
   },
   {
-    "id": "617f6af19a01d558",
+    "id": "094632001153f89c",
     "type": "hydrawise-controller",
     "name": "brains",
-    "connectionType": "CLOUD",
-    "key": "xxxx-xxxx-xxxx-xxxx",
-    "host": "",
-    "user": "",
-    "password": ""
+    "key": "xxxx-xxxx-xxxx-xxxx"
   },
   {
     "id": "d0e9aeb8e316740a",

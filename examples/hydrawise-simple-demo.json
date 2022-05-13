@@ -148,11 +148,7 @@
     "id": "617f6af19a01d558",
     "type": "hydrawise-controller",
     "name": "brains",
-    "connectionType": "CLOUD",
-    "key": "xxxx-xxxx-xxxx-xxxx",
-    "host": "",
-    "user": "",
-    "password": ""
+    "key": "xxxx-xxxx-xxxx-xxxx"
   },
   {
     "id": "d0e9aeb8e316740a",

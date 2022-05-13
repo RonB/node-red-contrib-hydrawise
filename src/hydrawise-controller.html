@@ -7,107 +7,83 @@
 -->
 
 <script type="text/javascript">
-  RED.nodes.registerType('hydrawise-controller', {
-    category: 'config',
+  RED.nodes.registerType("hydrawise-controller", {
+    category: "config",
     defaults: {
-      name: {value: ""},
-      connectionType: {value: 'CLOUD'},
-      key: {value:''},
-      host: {value: ''},
-      user: {value: ''},
-      password: {value: ''}
+      name: { value: "" },
+      key: { value: "" },
     },
     label: function () {
       return this.name || "hydrawise controller";
     },
-    oneditprepare: function() {
-      $("#node-config-input-connectionType").change(function() {
-        var type = $(this).children("option:selected").val();
-        switch (type) {
-          case "CLOUD":
-            $(".key-row").show();
-            $(".host-row").hide();
-            $(".user-row").hide();
-            $(".password-row").hide();
-            break;
-          case "LOCAL":
-            $(".key-row").hide();
-            $(".host-row").show();
-            $(".user-row").show();
-            $(".password-row").show();        
-            break;
-         }
-      });
-
-      $("#node-config-input-test").click(function() {
+    oneditprepare: function () {
+      $("#node-config-input-test").click(function () {
         // get parameters
-        var type = $("#node-config-input-connectionType").children("option:selected").val();
-        var params  = {
-          connectionType: type
+        var params = {
+          key: $("#node-config-input-key").val(),
         };
-        if(type == "CLOUD") {
-          params.key = $("#node-config-input-key").val();
-        } else {
-          params.host = $("#node-config-input-host").val();
-          params.user = $("#node-config-input-user").val();
-          params.password = $("#node-config-input-password").val();
-        }
-        $.getJSON('getControllers', params, function(data) {
+        $.getJSON("getControllers", params, function (data) {
           var status = $("#node-config-input-status");
-          if(data.error) {
+          if (data.error) {
             status.text("Controller not connected. check your settings.");
-            status.css('color', 'red');
+            status.css("color", "red");
           } else {
-            status.text("Controller " + data[0].name + "  connected. Status: " + data[0].status);
-            status.css('color', 'green');
+            status.text(
+              "Controller " +
+                data[0].name +
+                "  connected. Status: " +
+                data[0].status
+            );
+            status.css("color", "green");
           }
         });
       });
-    }
+    },
   });
 </script>
 
 <script type="text/html" data-template-name="hydrawise-controller">
-    <div class="form-row">
-        <label for="node-config-input-name"><i class="icon-tag"></i> <span data-i18n="node-red:common.label.name"></span></label>
-        <input type="text" id="node-config-input-name" placeholder="">
-    </div>
-    <div class="form-row">
-      <label for="node-config-input-connectionType"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.connectionType"></span></label>
-      <select id="node-config-input-connectionType" placeholder="CLOUD">
-        <option value="CLOUD">CLOUD</option>
-        <option value="LOCAL">LOCAL</option>
-      </select>
-    </div>
-    <div class="form-row key-row">
-      <label for="node-config-input-key"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.key"></span></label>
-      <input type="text" id="node-config-input-key" placeholder="XXXX-XXXX-XXXX-XXXX">
-    </div>
-    <div class="form-row host-row">
-        <label for="node-config-input-host"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.host"></span></label>
-        <input type="text" id="node-config-input-host" placeholder="127.0.0.1">
-    </div>
-    <div class="form-row user-row" >
-      <label for="node-config-input-user"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.user"></span></label>
-      <input type="text" id="node-config-input-user" placeholder="">
+  <div class="form-row">
+    <label for="node-config-input-name"
+      ><i class="icon-tag"></i>
+      <span data-i18n="node-red:common.label.name"></span
+    ></label>
+    <input type="text" id="node-config-input-name" placeholder="" />
   </div>
-  <div class="form-row password-row">
-    <label for="node-config-input-password"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.password"></span></label>
-    <input type="password" id="node-config-input-password" placeholder="">
+  <div class="form-row key-row">
+    <label for="node-config-input-key"
+      ><i class="icon-tag"></i>
+      <span data-i18n="hydrawise-contrib.label.key"></span
+    ></label>
+    <input
+      type="text"
+      id="node-config-input-key"
+      placeholder="XXXX-XXXX-XXXX-XXXX"
+    />
   </div>
   <div class="form-row status-row">
-    <label for="node-config-input-test"><i class="icon-tag"></i> <span data-i18n="hydrawise-contrib.label.test"></span></label>
-    <a type="button" id="node-config-input-test" class="red-ui-button"><i id="node-config-test-icon" class="fa fa-search"></i></a><br/>
-    <span style="color:rgb(128, 128, 7)" id="node-config-input-status" height="20px"></span>
+    <label for="node-config-input-test"
+      ><i class="icon-tag"></i>
+      <span data-i18n="hydrawise-contrib.label.test"></span
+    ></label>
+    <a type="button" id="node-config-input-test" class="red-ui-button"
+      ><i id="node-config-test-icon" class="fa fa-search"></i></a
+    ><br />
+    <span
+      style="color:rgb(128, 128, 7)"
+      id="node-config-input-status"
+      height="20px"
+    ></span>
   </div>
 </script>
 
 <script type="text/html" data-help-name="hydrawise-controller">
-    <h2>Hydrawise controller node</h2>
+  <h2>Hydrawise controller node</h2>
 
-    <div>This configuration node connects to your hydrawise controller. </div>
-    <h3>Todo's</h3>
-    <span>It uses the first controller, if you have more than one controller than bad luck. If you really this functionality please submit a change request.</span>
-    <span>I can't seem to get the local configuration to work, only the cloud api.</span>
-
+  <div>This configuration node connects to your hydrawise controller.</div>
+  <h3>Todo's</h3>
+  <span
+    >It uses the first controller, if you have more than one controller than bad
+    luck. If you really this functionality please submit a change request.</span
+  >
 </script>

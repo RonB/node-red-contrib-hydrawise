@@ -8,60 +8,67 @@
  *
  **/
 
-'use strict'
+"use strict";
 
-var controllerNode = require('../src/hydrawise-controller.js')
+var controllerNode = require("../src/hydrawise-controller.js");
 
-var helper = require('node-red-node-test-helper')
-helper.init(require.resolve('node-red'))
+var helper = require("node-red-node-test-helper");
+helper.init(require.resolve("node-red"));
 
-describe('Controller node Testing', function () {
+describe("Controller node Testing", function () {
   beforeEach(function (done) {
     helper.startServer(function () {
-      done()
-    })
-  })
+      done();
+    });
+  });
 
   afterEach(function (done) {
-    helper.unload().then(function () {
-      helper.stopServer(function () {
-        done()
+    helper
+      .unload()
+      .then(function () {
+        helper.stopServer(function () {
+          done();
+        });
       })
-    }).catch(function () {
-      helper.stopServer(function () {
-        done()
-      })
-    })
-  })
+      .catch(function () {
+        helper.stopServer(function () {
+          done();
+        });
+      });
+  });
 
-  describe('Node', function () {
-    it('Hydrawise controller should be read', function (done) {
-      helper.load([controllerNode], [
-        {
-          id: 'b289851b.dec6f8',
-          type: 'hydrawise-controller',
-          name: 'BrainsController',
-          connectionType: 'CLOUD',
-          key: '0681-7E46-7E46-68A8'
+  describe("Node", function () {
+    it("Hydrawise controller should be read", function (done) {
+      helper.load(
+        [controllerNode],
+        [
+          {
+            id: "b289851b.dec6f8",
+            type: "hydrawise-controller",
+            name: "BrainsController",
+            key: "48B1-E931-6FE6-6FE6",
+          },
+          {
+            id: "b289851b.dec6f9",
+            type: "hydrawise-command",
+            name: "RunZoneZero",
+            command: "run",
+            zone: "1: Gazon",
+          },
+        ],
+        function () {
+          done();
         },
-        {
-          id: 'b289851b.dec6f9',
-          type: 'hydrawise-command',
-          name: 'RunZoneZero',
-          command: 'run'
+        function () {
+          helper.log("function callback");
         }
-      ], function () {
-        
-        done()
-      }, function () {
-        helper.log('function callback')
-      })
-    })
-  })
+      );
+    });
+  });
 
-  describe('post', function () {
-    it('should fail for invalid node', function (done) {
-      helper.request().post('/hydrawise-run/invalid').expect(404).end(done)
-    })
-  })
-})
+  describe("post", function () {
+    it("should fail for invalid node", function (done) {
+      helper.request().post("/hydrawise-run/invalid").expect(404).end(done);
+    });
+  });
+});

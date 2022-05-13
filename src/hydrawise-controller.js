@@ -54,14 +54,16 @@ module.exports = function (RED) {
     this.emit('hydrawise_status', this.status)
 
     // instantiate the controller
-    if (config.connectionType === 'CLOUD') {
-      // instantiate hydrawise api
-      this.hydrawise = new Hydrawise({
-        type: config.connectionType,
-        key: config.key
-      })
-      // get the customer details
-      this.hydrawise.getControllers().then((controllers) => {
+    // instantiate hydrawise api
+    this.hydrawise = new Hydrawise({
+      type: 'CLOUD', // local controllers are not supportted
+      key: config.key
+    })
+
+    // get the customer details
+    this.hydrawise
+      .getControllers()
+      .then((controllers) => {
         // for now only the first controller will be supported
         this.controller = controllers[0]
         this.status = {
@@ -94,20 +96,13 @@ module.exports = function (RED) {
             this.emit('hydrawise_status', this.status)
           })
       })
-    } else {
-      // instantiate hydrawise local controller
-      this.controller = new Hydrawise({
-        type: config.connectionType,
-        host: config.host,
-        // user: config.user || 'admin',
-        password: config.password
+      .catch((err) => {
+        this.status = {
+          status: 'error',
+          text: 'Controller not available. Wrong API Key? ' + err.stack
+        }
+        this.emit('hydrawise_status', this.status)
       })
-      this.status = {
-        status: 'ready',
-        text: 'Controller ' + this.controller.name + ' available.'
-      }
-      this.emit('hydrawise_status', this.status)
-    }
   }
 
   // endpoints for Nodered configration editor
