@@ -116,7 +116,7 @@ module.exports = function (RED) {
           }
           break
         case 'stopAllZones':
-          this.controller[this.command]()
+          this.controllerNode.controller[this.command]()
             .then((response) => {
               node.status({
                 fill: 'green',
@@ -139,7 +139,7 @@ module.exports = function (RED) {
           break
         case 'runAllZones':
         case 'suspendAllZones':
-          this.controller[this.command](config.duration || '')
+          this.controllerNode.controller[this.command](config.duration || '')
             .then((response) => {
               node.status({
                 fill: 'green',
