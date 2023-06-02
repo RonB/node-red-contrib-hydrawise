@@ -9,7 +9,7 @@
 const Hydrawise = require('hydrawise-api').Hydrawise
 
 module.exports = function (RED) {
-  function hydrawiseController (config) {
+  function hydrawiseController(config) {
     RED.nodes.createNode(this, config)
 
     // getDetails function
@@ -27,7 +27,7 @@ module.exports = function (RED) {
             resolve(this.controller)
           })
           .catch((err) => {
-            this.contoller.zones = []
+            this.controller.zones = []
             this.status = {
               status: 'error',
               text:
@@ -86,7 +86,6 @@ module.exports = function (RED) {
               text: 'Customer details available.'
             }
             this.emit('hydrawise_status', this.status)
-            // now retrieve the controllers
           })
           .catch((err) => {
             this.status = {
